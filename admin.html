@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrativo - Complejo Educativo Pedro F. Cantor</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-slate-50 via-indigo-50 to-blue-100 text-slate-800 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <!-- Header -->
+    <header class="bg-gradient-to-r from-slate-900 via-indigo-900 to-blue-900 text-white shadow-xl sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl shadow-inner border border-white/20">
+                    <i class="fa-solid fa-chart-line text-2xl text-amber-300"></i>
+                </div>
+                <div>
+                    <h1 class="font-extrabold text-lg sm:text-xl tracking-tight leading-tight">Panel de Control Cloud</h1>
+                    <p class="text-xs text-indigo-200 font-medium">Complejo Educativo Pedro F. Cantor</p>
+                </div>
+            </div>
+            <!-- Botones de navegación interna del panel -->
+            <nav class="hidden md:flex items-center gap-2">
+                <button onclick="cambiarVista('inicio')" id="nav-inicio" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white/20 text-white">Inicio</button>
+                <button onclick="cambiarVista('daños')" id="nav-daños" class="px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Inventario de Daños</button>
+                <button onclick="cambiarVista('excursion')" id="nav-excursion" class="px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Excursión</button>
+                <button onclick="cambiarVista('asistencia')" id="nav-asistencia" class="px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Asistencia</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Menú móvil de navegación -->
+    <div class="md:hidden bg-slate-800 text-white px-4 py-2 flex justify-around text-xs font-bold border-b border-slate-700">
+        <button onclick="cambiarVista('inicio')" id="mob-inicio" class="py-1 px-3 rounded-lg bg-indigo-600">Inicio</button>
+        <button onclick="cambiarVista('daños')" id="mob-daños" class="py-1 px-3 rounded-lg">Daños</button>
+        <button onclick="cambiarVista('excursion')" id="mob-excursion" class="py-1 px-3 rounded-lg">Excursión</button>
+        <button onclick="cambiarVista('asistencia')" id="mob-asistencia" class="py-1 px-3 rounded-lg">Asistencia</button>
+    </div>
+
+    <!-- Main Container -->
+    <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
+        
+        <!-- VISTA 1: INICIO / RESUMEN GENERAL -->
+        <div id="vista-inicio" class="space-y-6">
+            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
+                <div class="inline-block bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Resumen Institucional Cloud</div>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Bienvenido al Panel de Datos en Vivo</h2>
+                <p class="text-sm text-slate-500 mt-1">Aquí visualizas en tiempo real toda la información sincronizada desde los módulos escolares.</p>
+                
+                <!-- Tarjetas de Estadísticas Rápidas -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
+                    <div class="bg-gradient-to-br from-indigo-500 to-blue-600 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase font-bold tracking-wider text-indigo-100">Reportes de Daños</p>
+                            <h3 id="statDaños" class="text-3xl font-black mt-1">0</h3>
+                        </div>
+                        <i class="fa-solid fa-boxes-stacked text-3xl text-indigo-200"></i>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-emerald-500 to-teal-600 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase font-bold tracking-wider text-emerald-100">Alumnos en Excursión</p>
+                            <h3 id="statExcursion" class="text-3xl font-black mt-1">0</h3>
+                        </div>
+                        <i class="fa-solid fa-bus text-3xl text-emerald-200"></i>
+                    </div>
+
+                    <div class="bg-gradient-to-br from-amber-500 to-orange-600 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
+                        <div>
+                            <p class="text-xs uppercase font-bold tracking-wider text-amber-100">Registros de Asistencia</p>
+                            <h3 id="statAsistencia" class="text-3xl font-black mt-1">0</h3>
+                        </div>
+                        <i class="fa-solid fa-user-check text-3xl text-amber-200"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 2: INVENTARIO / DAÑOS -->
+        <div id="vista-daños" class="hidden space-y-6">
+            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Reportes de Daños Escolares</h2>
+                        <p class="text-sm text-slate-500">Mobiliario e infraestructura averiada reportada en la nube.</p>
+                    </div>
+                    <!-- Botón Limpiar Daños -->
+                    <button onclick="limpiarModulo('danos')" class="text-xs bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-trash"></i> Limpiar Daños
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-slate-500 font-bold uppercase">
+                                <th class="p-3">Fecha / ID</th>
+                                <th class="p-3">Ubicación</th>
+                                <th class="p-3">Elementos y Cantidad</th>
+                                <th class="p-3">Reportado Por</th>
+                                <th class="p-3">Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaDaños" class="divide-y divide-slate-100">
+                            <!-- Dinámico -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 3: EXCURSIÓN -->
+        <div id="vista-excursion" class="hidden space-y-6">
+            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Consolidado de Excursión</h2>
+                        <p class="text-sm text-slate-500">Reportes enviados por los profesores desde la nube.</p>
+                    </div>
+                    <!-- Botón Limpiar Excursiones -->
+                    <button onclick="limpiarModulo('excursiones')" class="text-xs bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-trash"></i> Limpiar Excursión
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-slate-500 font-bold uppercase">
+                                <th class="p-3">Grado / Sección</th>
+                                <th class="p-3">Profesor</th>
+                                <th class="p-3 text-center">Asistirán</th>
+                                <th class="p-3 text-center">No Asistirán</th>
+                                <th class="p-3 text-center">Acompañantes</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaExcursion" class="divide-y divide-slate-100">
+                            <!-- Dinámico -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 4: ASISTENCIA -->
+        <div id="vista-asistencia" class="hidden space-y-6">
+            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
+                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+                    <div>
+                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Registros de Asistencia</h2>
+                        <p class="text-sm text-slate-500">Listados e incidencias sincronizadas en la nube.</p>
+                    </div>
+                    <!-- Botón Limpiar Asistencia -->
+                    <button onclick="limpiarModulo('asistencia')" class="text-xs bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center gap-1.5">
+                        <i class="fa-solid fa-trash"></i> Limpiar Asistencia
+                    </button>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-200 text-slate-500 font-bold uppercase">
+                                <th class="p-3">Fecha</th>
+                                <th class="p-3">Grado / Sección</th>
+                                <th class="p-3">Presentes / Ausentes</th>
+                                <th class="p-3">Encargado</th>
+                                <th class="p-3">Detalle Ausencias</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tablaAsistencia" class="divide-y divide-slate-100">
+                            <!-- Dinámico -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white/60 backdrop-blur-md border-t border-slate-200 py-4 text-center text-xs text-slate-500 font-medium">
+        Complejo Educativo Pedro F. Cantor &copy; 2026 - Panel Administrativo Central
+    </footer>
+
+    <!-- Script de Firebase, control de vistas y función de limpiar -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+        import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDadrGKG8ye32lc8UgOBb2N4VLCe85ASoE",
+            authDomain: "escuelapedrofcantor.firebaseapp.com",
+            projectId: "escuelapedrofcantor",
+            storageBucket: "escuelapedrofcantor.firebasestorage.app",
+            messagingSenderId: "286529428609",
+            appId: "1:286529428609:web:6802a61661fb14baae8180"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        window.cambiarVista = function(vista) {
+            ['inicio', 'daños', 'excursion', 'asistencia'].forEach(v => {
+                document.getElementById(`vista-${v}`).classList.add('hidden');
+                
+                const btnDesk = document.getElementById(`nav-${v}`);
+                if(btnDesk) {
+                    btnDesk.className = v === vista 
+                        ? "px-4 py-2 rounded-xl text-xs font-bold transition bg-white/20 text-white" 
+                        : "px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10";
+                }
+
+                const btnMob = document.getElementById(`mob-${v}`);
+                if(btnMob) {
+                    btnMob.className = v === vista ? "py-1 px-3 rounded-lg bg-indigo-600 font-bold" : "py-1 px-3 rounded-lg";
+                }
+            });
+            document.getElementById(`vista-${vista}`).classList.remove('hidden');
+        }
+
+        // Función para limpiar una sección completa de la base de datos de Firebase
+        window.limpiarModulo = function(ruta) {
+            if (confirm(`¿Estás seguro de eliminar todos los registros de la sección '${ruta}' en la nube?`)) {
+                remove(ref(db, ruta))
+                    .then(() => {
+                        alert(`¡Sección '${ruta}' limpiada con éxito!`);
+                    })
+                    .catch((error) => {
+                        alert("Error al eliminar: " + error.message);
+                    });
+            }
+        }
+
+        // 1. Escuchar Daños en tiempo real
+        onValue(ref(db, 'danos'), (snapshot) => {
+            const data = snapshot.val();
+            const tbodyDaños = document.getElementById('tablaDaños');
+            tbodyDaños.innerHTML = '';
+
+            if (!data) {
+                document.getElementById('statDaños').textContent = '0';
+                tbodyDaños.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay reportes de daños en la nube.</td></tr>`;
+                return;
+            }
+
+            const danosArray = Object.values(data);
+            document.getElementById('statDaños').textContent = danosArray.length;
+
+            danosArray.forEach(d => {
+                tbodyDaños.innerHTML += `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3 font-semibold text-slate-700">${d.fecha}<br><span class="text-xs text-indigo-600 font-mono">${d.id || 'N/A'}</span></td>
+                        <td class="p-3 text-slate-600">${d.ubicacion}</td>
+                        <td class="p-3 font-bold text-slate-800">${d.elemento}</td>
+                        <td class="p-3 text-slate-600">${d.reportadoPor}</td>
+                        <td class="p-3 text-slate-500 text-xs">${d.descripcion}</td>
+                    </tr>`;
+            });
+        });
+
+        // 2. Escuchar Excursiones en tiempo real
+        onValue(ref(db, 'excursiones'), (snapshot) => {
+            const data = snapshot.val();
+            const tbodyExcursion = document.getElementById('tablaExcursion');
+            tbodyExcursion.innerHTML = '';
+
+            if (!data) {
+                document.getElementById('statExcursion').textContent = '0';
+                tbodyExcursion.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay reportes de excursión en la nube.</td></tr>`;
+                return;
+            }
+
+            const excursionArray = Object.values(data);
+            let totalExcursionAlumnos = 0;
+            excursionArray.forEach(e => totalExcursionAlumnos += parseInt(e.asistiran) || 0);
+            document.getElementById('statExcursion').textContent = totalExcursionAlumnos;
+
+            excursionArray.forEach(e => {
+                tbodyExcursion.innerHTML += `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3 font-semibold text-slate-800">${e.especialidad} <span class="text-xs text-slate-500 font-normal">(${e.seccion})</span></td>
+                        <td class="p-3 text-slate-700">${e.profesor}</td>
+                        <td class="p-3 text-center font-bold text-emerald-600">${e.asistiran}</td>
+                        <td class="p-3 text-center font-bold text-rose-600">${e.noAsistiran}</td>
+                        <td class="p-3 text-center font-bold text-cyan-600">${e.acompanantes}</td>
+                    </tr>`;
+            });
+        });
+
+        // 3. Escuchar Asistencia en tiempo real
+        onValue(ref(db, 'asistencia'), (snapshot) => {
+            const data = snapshot.val();
+            const tbodyAsistencia = document.getElementById('tablaAsistencia');
+            tbodyAsistencia.innerHTML = '';
+
+            if (!data) {
+                document.getElementById('statAsistencia').textContent = '0';
+                tbodyAsistencia.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay registros de asistencia en la nube.</td></tr>`;
+                return;
+            }
+
+            const asistenciaArray = Object.values(data);
+            document.getElementById('statAsistencia').textContent = asistenciaArray.length;
+
+            asistenciaArray.forEach(a => {
+                tbodyAsistencia.innerHTML += `
+                    <tr class="hover:bg-slate-50">
+                        <td class="p-3 text-slate-600">${a.fecha || 'N/D'}</td>
+                        <td class="p-3 font-semibold text-slate-700">${a.gradoSeccion || 'N/D'}</td>
+                        <td class="p-3 font-bold text-slate-800">Presentes: <span class="text-emerald-600">${a.presentes}</span> | Ausentes: <span class="text-rose-600">${a.ausentesTotal}</span></td>
+                        <td class="p-3 text-slate-700">${a.encargado || 'N/D'}</td>
+                        <td class="p-3 text-slate-500 text-xs">${a.detalleAusentes || '-'}</td>
+                    </tr>`;
+            });
+        });
+    </script>
+</body>
+</html>
