@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Complejo Educativo Pedro F. Cantor</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-indigo-950 to-blue-950 text-slate-100 min-h-screen flex items-center justify-center p-4 selection:bg-indigo-500 selection:text-white">
+
+    <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl max-w-md w-full">
+        <div class="text-center mb-8">
+            <div class="inline-block bg-white/10 p-4 rounded-2xl border border-white/20 mb-3 shadow-inner">
+                <i class="fa-solid fa-school text-3xl text-amber-300"></i>
+            </div>
+            <h1 class="text-2xl font-black tracking-tight">Portal Institucional</h1>
+            <p class="text-xs text-indigo-200 mt-1">Complejo Educativo Pedro F. Cantor</p>
+        </div>
+
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label class="block text-xs font-bold text-indigo-200 mb-1">Correo Electrónico</label>
+                <input type="email" id="emailLogin" placeholder="usuario@pedrofcantor.edu" class="w-full bg-slate-900/60 border border-slate-700 rounded-xl p-3 text-sm text-white focus:ring-2 focus:ring-indigo-500 outline-none transition" required>
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-indigo-200 mb-1">Contraseña</label>
+                <input type="password" id="passwordLogin" placeholder="••••••••" class="w-full bg-slate-900/60 border border-slate-700 rounded-xl p-3 text-sm text-white focus:ring-2 focus:ring-indigo-500 outline-none transition" required>
+            </div>
+            <button type="submit" class="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-bold py-3.5 px-4 rounded-xl transition shadow-lg shadow-emerald-500/30">
+                Ingresar al Sistema
+            </button>
+        </form>
+    </div>
+
+    <!-- Script de Firebase Authentication -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+        import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDadrGKG8ye32lc8UgOBb2N4VLCe85ASoE",
+            authDomain: "escuelapedrofcantor.firebaseapp.com",
+            projectId: "escuelapedrofcantor",
+            storageBucket: "escuelapedrofcantor.firebasestorage.app",
+            messagingSenderId: "286529428609",
+            appId: "1:286529428609:web:6802a61661fb14baae8180"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Si ya hay sesión activa, redirige directo al menú principal
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                window.location.href = "../asistencia/index.html"; // o la ruta de la carpeta donde tengas tu index.html
+            }
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('emailLogin').value.trim();
+            const password = document.getElementById('passwordLogin').value;
+
+            signInWithEmailAndPassword(auth, email, password)
+                .then(() => {
+                    window.location.href = "../asistencia/index.html"; // o la ruta de la carpeta donde tengas tu index.html;
+                })
+                .catch((error) => {
+                    alert("Error al iniciar sesión: Verifique su correo y contraseña. (" + error.message + ")");
+                });
+        });
+    </script>
+</body>
+</html>
