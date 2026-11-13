@@ -13,7 +13,7 @@
 
     <!-- Header -->
     <header class="bg-gradient-to-r from-slate-900 via-indigo-900 to-blue-900 text-white shadow-xl sticky top-0 z-40 backdrop-blur-md bg-opacity-95">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div class="max-w-[95%] mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-3">
                 <div class="bg-white/10 backdrop-blur-md p-3 rounded-2xl shadow-inner border border-white/20">
                     <i class="fa-solid fa-chart-line text-2xl text-amber-300"></i>
@@ -23,55 +23,43 @@
                     <p class="text-xs text-indigo-200 font-medium">Complejo Educativo Pedro F. Cantor</p>
                 </div>
             </div>
-            <!-- Botones de navegación interna del panel -->
+            <!-- Navegación interna (Sin el botón Menú) -->
             <nav class="hidden md:flex items-center gap-2">
-                <button onclick="cambiarVista('inicio')" id="nav-inicio" class="px-4 py-2 rounded-xl text-xs font-bold transition bg-white/20 text-white">Inicio</button>
-                <button onclick="cambiarVista('daños')" id="nav-daños" class="px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Inventario de Daños</button>
-                <button onclick="cambiarVista('excursion')" id="nav-excursion" class="px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Excursión</button>
-                <button onclick="cambiarVista('asistencia')" id="nav-asistencia" class="px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Asistencia</button>
+                <button onclick="cambiarVista('inicio')" id="nav-inicio" class="px-3 py-2 rounded-xl text-xs font-bold transition bg-white/20 text-white">Inicio</button>
+                <button onclick="cambiarVista('daños')" id="nav-daños" class="px-3 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Daños</button>
+                <button onclick="cambiarVista('excursion')" id="nav-excursion" class="px-3 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Excursión</button>
+                <button onclick="cambiarVista('asistencia')" id="nav-asistencia" class="px-3 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Asistencia</button>
+                <button onclick="cambiarVista('cuentas')" id="nav-cuentas" class="px-3 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10">Cuentas Activas</button>
             </nav>
         </div>
     </header>
 
-    <!-- Menú móvil de navegación -->
-    <div class="md:hidden bg-slate-800 text-white px-4 py-2 flex justify-around text-xs font-bold border-b border-slate-700">
-        <button onclick="cambiarVista('inicio')" id="mob-inicio" class="py-1 px-3 rounded-lg bg-indigo-600">Inicio</button>
-        <button onclick="cambiarVista('daños')" id="mob-daños" class="py-1 px-3 rounded-lg">Daños</button>
-        <button onclick="cambiarVista('excursion')" id="mob-excursion" class="py-1 px-3 rounded-lg">Excursión</button>
-        <button onclick="cambiarVista('asistencia')" id="mob-asistencia" class="py-1 px-3 rounded-lg">Asistencia</button>
-    </div>
-
     <!-- Main Container -->
-    <main class="max-w-6xl mx-auto px-4 py-8 w-full flex-grow">
+    <main class="max-w-[95%] mx-auto px-2 sm:px-4 py-8 w-full flex-grow">
         
-        <!-- VISTA 1: INICIO / RESUMEN GENERAL -->
+        <!-- VISTA 1: INICIO -->
         <div id="vista-inicio" class="space-y-6">
-            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
-                <div class="inline-block bg-indigo-50 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">Resumen Institucional Cloud</div>
+            <div class="bg-white/85 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
                 <h2 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Bienvenido al Panel de Datos en Vivo</h2>
-                <p class="text-sm text-slate-500 mt-1">Aquí visualizas en tiempo real toda la información sincronizada desde los módulos escolares.</p>
-                
-                <!-- Tarjetas de Estadísticas Rápidas -->
+                <p class="text-sm text-slate-500 mt-1">Visualiza información institucional en tiempo real.</p>
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-8">
                     <div class="bg-gradient-to-br from-indigo-500 to-blue-600 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
                         <div>
-                            <p class="text-xs uppercase font-bold tracking-wider text-indigo-100">Reportes de Daños</p>
+                            <p class="text-xs uppercase font-bold tracking-wider text-indigo-100">Daños</p>
                             <h3 id="statDaños" class="text-3xl font-black mt-1">0</h3>
                         </div>
                         <i class="fa-solid fa-boxes-stacked text-3xl text-indigo-200"></i>
                     </div>
-
                     <div class="bg-gradient-to-br from-emerald-500 to-teal-600 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
                         <div>
-                            <p class="text-xs uppercase font-bold tracking-wider text-emerald-100">Alumnos en Excursión</p>
+                            <p class="text-xs uppercase font-bold tracking-wider text-emerald-100">Excursión</p>
                             <h3 id="statExcursion" class="text-3xl font-black mt-1">0</h3>
                         </div>
                         <i class="fa-solid fa-bus text-3xl text-emerald-200"></i>
                     </div>
-
                     <div class="bg-gradient-to-br from-amber-500 to-orange-600 text-white p-6 rounded-2xl shadow-lg flex items-center justify-between">
                         <div>
-                            <p class="text-xs uppercase font-bold tracking-wider text-amber-100">Registros de Asistencia</p>
+                            <p class="text-xs uppercase font-bold tracking-wider text-amber-100">Asistencias</p>
                             <h3 id="statAsistencia" class="text-3xl font-black mt-1">0</h3>
                         </div>
                         <i class="fa-solid fa-user-check text-3xl text-amber-200"></i>
@@ -80,33 +68,17 @@
             </div>
         </div>
 
-        <!-- VISTA 2: INVENTARIO / DAÑOS -->
+        <!-- VISTA 2: DAÑOS -->
         <div id="vista-daños" class="hidden space-y-6">
-            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
+            <div class="bg-white/85 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
-                    <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Reportes de Daños Escolares</h2>
-                        <p class="text-sm text-slate-500">Mobiliario e infraestructura averiada reportada en la nube.</p>
-                    </div>
-                    <!-- Botón Limpiar Daños -->
-                    <button onclick="limpiarModulo('danos')" class="text-xs bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center gap-1.5">
-                        <i class="fa-solid fa-trash"></i> Limpiar Daños
-                    </button>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Reportes de Daños</h2>
+                    <button onclick="limpiarModulo('danos')" class="text-xs bg-rose-100 text-rose-700 font-bold px-3 py-2 rounded-xl">Limpiar</button>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                        <thead>
-                            <tr class="border-b border-slate-200 text-slate-500 font-bold uppercase">
-                                <th class="p-3">Fecha / ID</th>
-                                <th class="p-3">Ubicación</th>
-                                <th class="p-3">Elementos y Cantidad</th>
-                                <th class="p-3">Reportado Por</th>
-                                <th class="p-3">Descripción</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaDaños" class="divide-y divide-slate-100">
-                            <!-- Dinámico -->
-                        </tbody>
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead><tr class="border-b text-slate-500 font-bold"><th class="p-3">Fecha</th><th class="p-3">Ubicación</th><th class="p-3">Elemento</th><th class="p-3">Reportó</th><th class="p-3">Descripción</th></tr></thead>
+                        <tbody id="tablaDaños" class="divide-y divide-slate-100"></tbody>
                     </table>
                 </div>
             </div>
@@ -114,31 +86,15 @@
 
         <!-- VISTA 3: EXCURSIÓN -->
         <div id="vista-excursion" class="hidden space-y-6">
-            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
+            <div class="bg-white/85 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
                 <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
-                    <div>
-                        <h2 class="text-2xl font-black text-slate-900 tracking-tight">Consolidado de Excursión</h2>
-                        <p class="text-sm text-slate-500">Reportes enviados por los profesores desde la nube.</p>
-                    </div>
-                    <!-- Botón Limpiar Excursiones -->
-                    <button onclick="limpiarModulo('excursiones')" class="text-xs bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center gap-1.5">
-                        <i class="fa-solid fa-trash"></i> Limpiar Excursión
-                    </button>
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Consolidado Excursión</h2>
+                    <button onclick="limpiarModulo('excursiones')" class="text-xs bg-rose-100 text-rose-700 font-bold px-3 py-2 rounded-xl">Limpiar</button>
                 </div>
                 <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
-                        <thead>
-                            <tr class="border-b border-slate-200 text-slate-500 font-bold uppercase">
-                                <th class="p-3">Grado / Sección</th>
-                                <th class="p-3">Profesor</th>
-                                <th class="p-3 text-center">Asistirán</th>
-                                <th class="p-3 text-center">No Asistirán</th>
-                                <th class="p-3 text-center">Acompañantes</th>
-                            </tr>
-                        </thead>
-                        <tbody id="tablaExcursion" class="divide-y divide-slate-100">
-                            <!-- Dinámico -->
-                        </tbody>
+                    <table class="w-full text-left text-xs sm:text-sm">
+                        <thead><tr class="border-b text-slate-500 font-bold"><th class="p-3">Grado</th><th class="p-3">Profesor</th><th class="p-3 text-center">Asistirán</th><th class="p-3 text-center">No</th><th class="p-3 text-center">Acompañantes</th></tr></thead>
+                        <tbody id="tablaExcursion" class="divide-y divide-slate-100"></tbody>
                     </table>
                 </div>
             </div>
@@ -146,32 +102,92 @@
 
         <!-- VISTA 4: ASISTENCIA -->
         <div id="vista-asistencia" class="hidden space-y-6">
-            <div class="bg-white/80 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10">
-                <div class="flex justify-between items-center mb-6 pb-4 border-b border-slate-100">
+            <div class="bg-white/85 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10 space-y-6">
+                
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 pb-4 border-b border-slate-100">
                     <div>
                         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Registros de Asistencia</h2>
-                        <p class="text-sm text-slate-500">Listados e incidencias sincronizadas en la nube.</p>
+                        <p class="text-sm text-slate-500">Filtrado por fecha, grado y turno (Ordenados alfabéticamente por sección).</p>
                     </div>
-                    <!-- Botón Limpiar Asistencia -->
-                    <button onclick="limpiarModulo('asistencia')" class="text-xs bg-rose-100 text-rose-700 hover:bg-rose-200 font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center gap-1.5">
-                        <i class="fa-solid fa-trash"></i> Limpiar Asistencia
-                    </button>
+                    
+                    <!-- Filtros -->
+                    <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                        <div class="flex items-center gap-1 bg-slate-50 border border-slate-300 rounded-xl px-2.5 py-1.5">
+                            <i class="fa-solid fa-calendar text-slate-400 text-xs"></i>
+                            <input type="date" id="filtroFechaAsistencia" onchange="renderizarTablaAsistencia()" class="bg-transparent text-xs font-bold text-slate-700 outline-none">
+                        </div>
+
+                        <button onclick="mostrarHoy()" class="text-xs bg-blue-100 text-blue-700 font-bold px-3 py-2 rounded-xl hover:bg-blue-200 transition" title="Ver registros de hoy">Hoy</button>
+
+                        <select id="filtroGradoAsistencia" onchange="renderizarTablaAsistencia()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="TODOS">-- Todos los Grados --</option>
+                            <option value="1° General">1° General</option>
+                            <option value="2° General">2° General</option>
+                            <option value="1° Contador">1° Contador</option>
+                            <option value="2° Contador">2° Contador</option>
+                            <option value="3° Contador">3° Contador</option>
+                        </select>
+
+                        <select id="filtroTurnoAsistencia" onchange="renderizarTablaAsistencia()" class="bg-slate-50 border border-slate-300 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="TODOS">-- Todos los Turnos --</option>
+                            <option value="Mañana">Mañana</option>
+                            <option value="Tarde">Tarde</option>
+                        </select>
+
+                        <button onclick="limpiarModulo('asistencia')" class="text-xs bg-rose-100 text-rose-700 font-bold px-3 py-2 rounded-xl">Limpiar</button>
+                    </div>
                 </div>
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+
+                <!-- Tabla -->
+                <div class="w-full overflow-x-auto">
+                    <table class="w-full text-left border-collapse text-xs">
                         <thead>
-                            <tr class="border-b border-slate-200 text-slate-500 font-bold uppercase">
-                                <th class="p-3">Fecha</th>
-                                <th class="p-3">Grado / Sección</th>
-                                <th class="p-3">Presentes / Ausentes</th>
-                                <th class="p-3">Encargado</th>
-                                <th class="p-3">Detalle Ausencias</th>
+                            <tr class="border-b border-slate-200 text-slate-500 font-bold uppercase tracking-wider">
+                                <th class="py-3 px-2">Fecha</th>
+                                <th class="py-3 px-2">Grado y Sección</th>
+                                <th class="py-3 px-2">Turno</th>
+                                <th class="py-3 px-2 text-center">Presentes</th>
+                                <th class="py-3 px-2 text-center">Ausentes</th>
+                                <th class="py-3 px-3">Alumnos Ausentes y Motivos</th>
+                                <th class="py-3 px-2 text-center">Géneros (M / F)</th>
+                                <th class="py-3 px-2 text-center">Matriculados</th>
+                                <th class="py-3 px-2">Encargado</th>
                             </tr>
                         </thead>
-                        <tbody id="tablaAsistencia" class="divide-y divide-slate-100">
-                            <!-- Dinámico -->
-                        </tbody>
+                        <tbody id="tablaAsistencia" class="divide-y divide-slate-100"></tbody>
                     </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VISTA 5: CUENTAS -->
+        <div id="vista-cuentas" class="hidden space-y-6">
+            <div class="bg-white/85 backdrop-blur-xl rounded-3xl shadow-xl border border-white p-6 sm:p-10 space-y-8">
+                <div class="border-b border-slate-100 pb-4">
+                    <h2 class="text-2xl font-black text-slate-900 tracking-tight">Gestión de Cuentas Activas</h2>
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <form id="crearCuentaForm" class="bg-slate-50/80 border border-slate-200 p-6 rounded-2xl space-y-4 h-fit">
+                        <h3 class="font-bold text-slate-800 text-sm">Registrar Nueva Cuenta</h3>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Correo Electrónico</label>
+                            <input type="email" id="nuevoEmail" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">Contraseña</label>
+                            <input type="text" id="nuevoPassword" class="w-full bg-white border border-slate-300 rounded-xl p-3 text-sm" required>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl">Crear Cuenta</button>
+                    </form>
+                    <div class="bg-slate-50/80 border border-slate-200 p-6 rounded-2xl space-y-4">
+                        <h3 class="font-bold text-slate-800 text-sm">Cuentas Registradas</h3>
+                        <div class="overflow-x-auto max-h-72 overflow-y-auto">
+                            <table class="w-full text-left text-xs sm:text-sm">
+                                <thead><tr class="border-b text-slate-500"><th class="p-2">Correo</th><th class="p-2">Contraseña</th><th class="p-2 text-center">Acción</th></tr></thead>
+                                <tbody id="tablaCuentas" class="divide-y divide-slate-100"></tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -179,14 +195,15 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white/60 backdrop-blur-md border-t border-slate-200 py-4 text-center text-xs text-slate-500 font-medium">
+    <footer class="bg-white/60 border-t border-slate-200 py-4 text-center text-xs text-slate-500">
         Complejo Educativo Pedro F. Cantor &copy; 2026 - Panel Administrativo Central
     </footer>
 
-    <!-- Script de Firebase, control de vistas y función de limpiar -->
+    <!-- Script de administración -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
-        import { getDatabase, ref, onValue, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+        import { getDatabase, ref, onValue, push, remove } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-database.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDadrGKG8ye32lc8UgOBb2N4VLCe85ASoE",
@@ -200,120 +217,174 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        window.cambiarVista = function(vista) {
-            ['inicio', 'daños', 'excursion', 'asistencia'].forEach(v => {
-                document.getElementById(`vista-${v}`).classList.add('hidden');
-                
-                const btnDesk = document.getElementById(`nav-${v}`);
-                if(btnDesk) {
-                    btnDesk.className = v === vista 
-                        ? "px-4 py-2 rounded-xl text-xs font-bold transition bg-white/20 text-white" 
-                        : "px-4 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10";
-                }
+        window.addEventListener('DOMContentLoaded', () => {
+            const hoy = obtenerFechaLocal();
+            const inputFecha = document.getElementById('filtroFechaAsistencia');
+            if(inputFecha) inputFecha.value = hoy;
+        });
 
-                const btnMob = document.getElementById(`mob-${v}`);
-                if(btnMob) {
-                    btnMob.className = v === vista ? "py-1 px-3 rounded-lg bg-indigo-600 font-bold" : "py-1 px-3 rounded-lg";
-                }
+        window.mostrarHoy = function() {
+            const hoy = obtenerFechaLocal();
+            document.getElementById('filtroFechaAsistencia').value = hoy;
+            renderizarTablaAsistencia();
+        }
+
+        function obtenerFechaLocal() {
+            const d = new Date();
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        }
+
+        window.cambiarVista = function(vista) {
+            ['inicio', 'daños', 'excursion', 'asistencia', 'cuentas'].forEach(v => {
+                document.getElementById(`vista-${v}`).classList.add('hidden');
+                const btnDesk = document.getElementById(`nav-${v}`);
+                if(btnDesk) btnDesk.className = v === vista ? "px-3 py-2 rounded-xl text-xs font-bold transition bg-white/20 text-white" : "px-3 py-2 rounded-xl text-xs font-bold transition text-indigo-200 hover:bg-white/10";
             });
             document.getElementById(`vista-${vista}`).classList.remove('hidden');
         }
 
-        // Función para limpiar una sección completa de la base de datos de Firebase
-        window.limpiarModulo = function(ruta) {
-            if (confirm(`¿Estás seguro de eliminar todos los registros de la sección '${ruta}' en la nube?`)) {
-                remove(ref(db, ruta))
-                    .then(() => {
-                        alert(`¡Sección '${ruta}' limpiada con éxito!`);
-                    })
-                    .catch((error) => {
-                        alert("Error al eliminar: " + error.message);
-                    });
-            }
-        }
+        document.getElementById('crearCuentaForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('nuevoEmail').value.trim();
+            const password = document.getElementById('nuevoPassword').value;
 
-        // 1. Escuchar Daños en tiempo real
+            import("https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js").then(({ initializeApp, deleteApp }) => {
+                const secondaryApp = initializeApp(firebaseConfig, "SecondaryAppForCreation");
+                const secondaryAuth = getAuth(secondaryApp);
+
+                createUserWithEmailAndPassword(secondaryAuth, email, password)
+                    .then((userCredential) => {
+                        push(ref(db, 'cuentas_registradas'), { email, password, uid: userCredential.user.uid });
+                        alert(`¡Cuenta creada para ${email}!`);
+                        document.getElementById('crearCuentaForm').reset();
+                        deleteApp(secondaryApp);
+                    })
+                    .catch((error) => { alert("Error: " + error.message); deleteApp(secondaryApp); });
+            });
+        });
+
+        onValue(ref(db, 'cuentas_registradas'), (snapshot) => {
+            const data = snapshot.val();
+            const tbody = document.getElementById('tablaCuentas');
+            tbody.innerHTML = data ? '' : '<tr><td colspan="3" class="p-4 text-center text-slate-400">No hay cuentas.</td></tr>';
+            if(data) Object.entries(data).forEach(([key, c]) => {
+                tbody.innerHTML += `<tr class="hover:bg-slate-50"><td class="p-2">${c.email}</td><td class="p-2 font-mono bg-slate-100">${c.password}</td><td class="p-2 text-center"><button onclick="eliminarCuenta('${key}')" class="text-rose-600"><i class="fa-solid fa-trash"></i></button></td></tr>`;
+            });
+        });
+
+        window.eliminarCuenta = (k) => remove(ref(db, `cuentas_registradas/${k}`));
+        window.limpiarModulo = (r) => { if(confirm(`¿Limpiar ${r}?`)) remove(ref(db, r)); };
+
         onValue(ref(db, 'danos'), (snapshot) => {
             const data = snapshot.val();
-            const tbodyDaños = document.getElementById('tablaDaños');
-            tbodyDaños.innerHTML = '';
-
-            if (!data) {
-                document.getElementById('statDaños').textContent = '0';
-                tbodyDaños.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay reportes de daños en la nube.</td></tr>`;
-                return;
-            }
-
-            const danosArray = Object.values(data);
-            document.getElementById('statDaños').textContent = danosArray.length;
-
-            danosArray.forEach(d => {
-                tbodyDaños.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="p-3 font-semibold text-slate-700">${d.fecha}<br><span class="text-xs text-indigo-600 font-mono">${d.id || 'N/A'}</span></td>
-                        <td class="p-3 text-slate-600">${d.ubicacion}</td>
-                        <td class="p-3 font-bold text-slate-800">${d.elemento}</td>
-                        <td class="p-3 text-slate-600">${d.reportadoPor}</td>
-                        <td class="p-3 text-slate-500 text-xs">${d.descripcion}</td>
-                    </tr>`;
+            const tbody = document.getElementById('tablaDaños');
+            tbody.innerHTML = data ? '' : '<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay daños.</td></tr>';
+            document.getElementById('statDaños').textContent = data ? Object.keys(data).length : 0;
+            if(data) Object.values(data).forEach(d => {
+                tbody.innerHTML += `<tr class="hover:bg-slate-50"><td class="p-3">${d.fecha}</td><td class="p-3">${d.ubicacion}</td><td class="p-3 font-bold">${d.elemento}</td><td class="p-3">${d.reportadoPor}</td><td class="p-3 text-xs">${d.descripcion}</td></tr>`;
             });
         });
 
-        // 2. Escuchar Excursiones en tiempo real
         onValue(ref(db, 'excursiones'), (snapshot) => {
             const data = snapshot.val();
-            const tbodyExcursion = document.getElementById('tablaExcursion');
-            tbodyExcursion.innerHTML = '';
-
-            if (!data) {
-                document.getElementById('statExcursion').textContent = '0';
-                tbodyExcursion.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay reportes de excursión en la nube.</td></tr>`;
-                return;
-            }
-
-            const excursionArray = Object.values(data);
-            let totalExcursionAlumnos = 0;
-            excursionArray.forEach(e => totalExcursionAlumnos += parseInt(e.asistiran) || 0);
-            document.getElementById('statExcursion').textContent = totalExcursionAlumnos;
-
-            excursionArray.forEach(e => {
-                tbodyExcursion.innerHTML += `
-                    <tr class="hover:bg-slate-50">
-                        <td class="p-3 font-semibold text-slate-800">${e.especialidad} <span class="text-xs text-slate-500 font-normal">(${e.seccion})</span></td>
-                        <td class="p-3 text-slate-700">${e.profesor}</td>
-                        <td class="p-3 text-center font-bold text-emerald-600">${e.asistiran}</td>
-                        <td class="p-3 text-center font-bold text-rose-600">${e.noAsistiran}</td>
-                        <td class="p-3 text-center font-bold text-cyan-600">${e.acompanantes}</td>
-                    </tr>`;
+            const tbody = document.getElementById('tablaExcursion');
+            tbody.innerHTML = data ? '' : '<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay excursiones.</td></tr>';
+            let total = 0;
+            if(data) Object.values(data).forEach(e => total += parseInt(e.asistiran) || 0);
+            document.getElementById('statExcursion').textContent = total;
+            if(data) Object.values(data).forEach(e => {
+                tbody.innerHTML += `<tr class="hover:bg-slate-50"><td class="p-3 font-semibold">${e.especialidad} (${e.seccion})</td><td class="p-3">${e.profesor}</td><td class="p-3 text-center font-bold text-emerald-600">${e.asistiran}</td><td class="p-3 text-center font-bold text-rose-600">${e.noAsistiran}</td><td class="p-3 text-center font-bold text-cyan-600">${e.acompanantes}</td></tr>`;
             });
         });
 
-        // 3. Escuchar Asistencia en tiempo real
+        let asistenciaGlobalData = {};
         onValue(ref(db, 'asistencia'), (snapshot) => {
             const data = snapshot.val();
-            const tbodyAsistencia = document.getElementById('tablaAsistencia');
-            tbodyAsistencia.innerHTML = '';
+            document.getElementById('statAsistencia').textContent = data ? Object.keys(data).length : 0;
+            asistenciaGlobalData = data || {};
+            renderizarTablaAsistencia();
+        });
 
-            if (!data) {
-                document.getElementById('statAsistencia').textContent = '0';
-                tbodyAsistencia.innerHTML = `<tr><td colspan="5" class="p-4 text-center text-slate-400">No hay registros de asistencia en la nube.</td></tr>`;
+        window.renderizarTablaAsistencia = function() {
+            const filtroFechaInput = document.getElementById('filtroFechaAsistencia').value;
+            const filtroGrado = document.getElementById('filtroGradoAsistencia').value;
+            const filtroTurno = document.getElementById('filtroTurnoAsistencia').value;
+            const tbody = document.getElementById('tablaAsistencia');
+            tbody.innerHTML = '';
+
+            const registros = Object.values(asistenciaGlobalData);
+            
+            const filtrados = registros.filter(a => {
+                let coincideFecha = true;
+                if (filtroFechaInput && a.fecha) {
+                    let partesFecha = a.fecha.split(' ')[0].split('/');
+                    if(partesFecha.length === 3) {
+                        let dia = partesFecha[0].padStart(2, '0');
+                        let mes = partesFecha[1].padStart(2, '0');
+                        let anio = partesFecha[2];
+                        let fechaFormateada = `${anio}-${mes}-${dia}`;
+                        coincideFecha = fechaFormateada === filtroFechaInput;
+                    }
+                }
+
+                let coincideGrado = filtroGrado === 'TODOS' || (a.gradoSeccion && a.gradoSeccion.includes(filtroGrado));
+                let coincideTurno = filtroTurno === 'TODOS' || (a.turno && a.turno === filtroTurno);
+                
+                return coincideFecha && coincideGrado && coincideTurno;
+            });
+
+            filtrados.sort((a, b) => {
+                let gradoA = a.gradoSeccion || '';
+                let gradoB = b.gradoSeccion || '';
+                return gradoA.localeCompare(gradoB, 'es', { numeric: true });
+            });
+
+            if (filtrados.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-slate-400">No hay registros de asistencia para la fecha y filtros seleccionados.</td></tr>`;
                 return;
             }
 
-            const asistenciaArray = Object.values(data);
-            document.getElementById('statAsistencia').textContent = asistenciaArray.length;
+            filtrados.forEach(a => {
+                let presentes = parseInt(a.presentes) || 0;
+                let ausentes = parseInt(a.ausentesTotal) || 0;
+                let totalMatriculados = presentes + ausentes;
 
-            asistenciaArray.forEach(a => {
-                tbodyAsistencia.innerHTML += `
+                let turnoBadge = a.turno === 'Mañana' 
+                    ? `<span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded font-bold"><i class="fa-solid fa-sun text-amber-500"></i> Mañana</span>` 
+                    : `<span class="text-[10px] bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded font-bold"><i class="fa-solid fa-moon text-indigo-500"></i> Tarde</span>`;
+
+                let ausentesHtml = '<span class="text-slate-400 italic text-xs">Ninguno / Sin ausencias</span>';
+                if (a.detalleAlumnos && Array.isArray(a.detalleAlumnos)) {
+                    let listaFaltantes = a.detalleAlumnos.filter(item => item.includes('Faltó'));
+                    if (listaFaltantes.length > 0) {
+                        ausentesHtml = '<ul class="list-disc list-inside space-y-0.5 text-[11px] text-rose-700 font-semibold">';
+                        listaFaltantes.forEach(faltante => {
+                            ausentesHtml += `<li>${faltante}</li>`;
+                        });
+                        ausentesHtml += '</ul>';
+                    }
+                }
+
+                tbody.innerHTML += `
                     <tr class="hover:bg-slate-50">
-                        <td class="p-3 text-slate-600">${a.fecha || 'N/D'}</td>
-                        <td class="p-3 font-semibold text-slate-700">${a.gradoSeccion || 'N/D'}</td>
-                        <td class="p-3 font-bold text-slate-800">Presentes: <span class="text-emerald-600">${a.presentes}</span> | Ausentes: <span class="text-rose-600">${a.ausentesTotal}</span></td>
-                        <td class="p-3 text-slate-700">${a.encargado || 'N/D'}</td>
-                        <td class="p-3 text-slate-500 text-xs">${a.detalleAusentes || '-'}</td>
+                        <td class="py-3 px-2 text-slate-600">${a.fecha || 'N/D'}</td>
+                        <td class="py-3 px-2 font-semibold text-slate-700">${a.gradoSeccion || 'N/D'}</td>
+                        <td class="py-3 px-2">${turnoBadge}</td>
+                        <td class="py-3 px-2 font-bold text-emerald-600 bg-emerald-50/50 text-center">${presentes}</td>
+                        <td class="py-3 px-2 font-bold text-rose-600 bg-rose-50/50 text-center">${ausentes}</td>
+                        <td class="py-3 px-3 max-w-xs">${ausentesHtml}</td>
+                        <td class="py-3 px-2 text-xs font-semibold text-center">
+                            <span class="text-blue-600 bg-blue-50 px-1.5 py-0.5 rounded">M: ${a.masculinos || 0}</span> 
+                            <span class="text-purple-600 bg-purple-50 px-1.5 py-0.5 rounded ml-1">F: ${a.femeninos || 0}</span>
+                        </td>
+                        <td class="py-3 px-2 font-bold text-indigo-700 bg-indigo-50/50 text-center">${totalMatriculados}</td>
+                        <td class="py-3 px-2 text-slate-700">${a.encargado || 'N/D'}</td>
                     </tr>`;
             });
-        });
+        }
     </script>
 </body>
 </html>
